@@ -39,3 +39,25 @@ database.ref("blogs").on("value", (snapshot) => {
         blogContainer.innerHTML = "<p>No articles found.</p>";
     }
 });
+
+database.ref("blogs").on("value", (snapshot) => {
+    blogContainer.innerHTML = ""; // Clear content
+    const blogs = snapshot.val();
+
+    if (blogs) {
+        for (const id in blogs) {
+            const blog = blogs[id];
+            const blogElement = document.createElement("div");
+
+            blogElement.innerHTML = `
+                <h2><a href="article.html?id=${id}" class="blog-link">${blog.title}</a></h2>
+                <p>${blog.content.substring(0, 100)}...</p>
+                <small>By: ${blog.author} | ${blog.date}</small>
+                <hr>
+            `;
+            blogContainer.appendChild(blogElement);
+        }
+    } else {
+        blogContainer.innerHTML = "<p>No articles found.</p>";
+    }
+});
