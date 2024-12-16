@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Article Details</title>
+  <style>
+   .blog-link {
+       text-decoration: none;
+       color: #3396bb;
+   }
+   .blog-link:hover {
+       text-decoration: underline;
+   }
+</style>
+
+</head>
+<body>
+   <div id="article-container">
+       <p>Loading article...</p>
+   </div>
+   <!-- Firebase CDN -->
+   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+   <!-- Firebase Config -->
+   <script>
+      const firebaseConfig = {
+         apiKey: "AIzaSyC9Yo_cX9oKwnu3hqkCKMyQveKsjft6FuI",
+         authDomain: "noordup-179be.firebaseapp.com",
+         databaseURL: "https://noordup-179be.firebaseio.com",
+         projectId: "noordup-179be",
+         storageBucket: "noordup-179be.firebasestorage.app",
+         messagingSenderId: "25031006249",
+         appId: "1:25031006249:web:64e899aa7ab781c4eae438"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+   </script>
+   <!-- Custom Script -->
+   <script>
+      const articleContainer = document.getElementById("article-container");
+
+      // Ambil ID dari URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const articleId = urlParams.get("id");
+
+      if (articleId) {
+          // Ambil artikel berdasarkan ID
+          database.ref(`blogs/${articleId}`).once("value", (snapshot) => {
+              const article = snapshot.val();
+
+              if (article) {
+                  articleContainer.innerHTML = `
+                      <h1>${article.title}</h1>
+                      <p>${article.content}</p>
+                      <small>By: ${article.author} | ${article.date}</small>
+                  `;
+              } else {
+                  articleContainer.innerHTML = "<p>Article not found.</p>";
+              }
+          });
+      } else {
+          articleContainer.innerHTML = "<p>Invalid article ID.</p>";
+      }
+   </script>
+</body>
+</html>
