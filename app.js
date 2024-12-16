@@ -23,11 +23,15 @@ database.ref("blogs").on("value", (snapshot) => {
     if (blogs) {
         for (const id in blogs) {
             const blog = blogs[id];
-            const blogTitle = encodeURIComponent(blog.title); // Encode title for URL
+            const slug = blog.title.toLowerCase()
+                .replace(/[^\w\s-]/g, '')  // Hapus karakter yang nggak perlu
+                .replace(/\s+/g, '-')       // Ganti spasi dengan -
+                .replace(/-+/g, '-');       // Ganti multiple - jadi satu
+
             const blogElement = document.createElement("div");
 
             blogElement.innerHTML = `
-                <h2><a href="article.html?title=${blogTitle}" class="blog-link">${blog.title}</a></h2>
+                <h2><a href="/article/${slug}/" class="blog-link">${blog.title}</a></h2>
                 <p>${blog.content.substring(0, 100)}...</p>
                 <small>By: ${blog.author} | ${blog.date}</small>
                 <hr>
