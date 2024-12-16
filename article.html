@@ -4,16 +4,6 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Article Details</title>
-  <style>
-   .blog-link {
-       text-decoration: none;
-       color: #3396bb;
-   }
-   .blog-link:hover {
-       text-decoration: underline;
-   }
-</style>
-
 </head>
 <body>
    <div id="article-container">
@@ -41,27 +31,28 @@
    <script>
       const articleContainer = document.getElementById("article-container");
 
-      // Ambil ID dari URL
+      // Ambil parameter 'title' dari URL
       const urlParams = new URLSearchParams(window.location.search);
-      const articleId = urlParams.get("id");
+      const articleTitle = decodeURIComponent(urlParams.get("title")); // Decode judul artikel
 
-      if (articleId) {
-          // Ambil artikel berdasarkan ID
-          database.ref(`blogs/${articleId}`).once("value", (snapshot) => {
+      if (articleTitle) {
+          // Ambil artikel berdasarkan title
+          database.ref("blogs").orderByChild("title").equalTo(articleTitle).once("value", (snapshot) => {
               const article = snapshot.val();
 
               if (article) {
+                  const articleData = Object.values(article)[0]; // Ambil artikel pertama
                   articleContainer.innerHTML = `
-                      <h1>${article.title}</h1>
-                      <p>${article.content}</p>
-                      <small>By: ${article.author} | ${article.date}</small>
+                      <h1>${articleData.title}</h1>
+                      <p>${articleData.content}</p>
+                      <small>By: ${articleData.author} | ${articleData.date}</small>
                   `;
               } else {
                   articleContainer.innerHTML = "<p>Article not found.</p>";
               }
           });
       } else {
-          articleContainer.innerHTML = "<p>Invalid article ID.</p>";
+          articleContainer.innerHTML = "<p>Invalid article title.</p>";
       }
    </script>
 </body>
