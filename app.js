@@ -4,13 +4,15 @@ const firebaseConfig = {
   authDomain: "noordup-179be.firebaseapp.com",
   databaseURL: "https://noordup-179be.firebaseio.com",
   projectId: "noordup-179be",
-  storageBucket: "noordup-179be.firebasestorage.app",
+  storageBucket: "noordup-179be.appspot.com",
   messagingSenderId: "25031006249",
   appId: "1:25031006249:web:64e899aa7ab781c4eae438"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// Inisialisasi Firebase
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 const database = firebase.database();
 
 // Ambil data dari Realtime Database
