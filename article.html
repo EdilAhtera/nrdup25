@@ -31,13 +31,13 @@
    <script>
       const articleContainer = document.getElementById("article-container");
 
-      // Ambil parameter 'title' dari URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const articleTitle = decodeURIComponent(urlParams.get("title")); // Decode judul artikel
+      // Ambil path dari URL
+      const pathParts = window.location.pathname.split('/'); // Pisahkan berdasarkan "/"
+      const articleSlug = pathParts[2]; // Ambil bagian setelah "/article/"
 
-      if (articleTitle) {
-          // Ambil artikel berdasarkan title
-          database.ref("blogs").orderByChild("title").equalTo(articleTitle).once("value", (snapshot) => {
+      if (articleSlug) {
+          // Ambil artikel berdasarkan slug
+          database.ref("blogs").orderByChild("slug").equalTo(articleSlug).once("value", (snapshot) => {
               const article = snapshot.val();
 
               if (article) {
@@ -52,7 +52,7 @@
               }
           });
       } else {
-          articleContainer.innerHTML = "<p>Invalid article title.</p>";
+          articleContainer.innerHTML = "<p>Invalid article link.</p>";
       }
    </script>
 </body>
