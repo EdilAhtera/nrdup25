@@ -2,7 +2,7 @@
 const firebaseConfig = {
   apiKey: "AIzaSyC9Yo_cX9oKwnu3hqkCKMyQveKsjft6FuI",
   authDomain: "noordup-179be.firebaseapp.com",
-  databaseURL: "https://PROJECT_ID.firebaseio.com",
+  databaseURL: "https://noordup-179be.firebaseio.com",
   projectId: "noordup-179be",
   storageBucket: "noordup-179be.firebasestorage.app",
   messagingSenderId: "25031006249",
