@@ -1,0 +1,144 @@
+<!-- Header -->
+<header class="fixed border-b border-neutral-200 top-0 left-0 w-full bg-white z-50">
+  <div class="grid grid-cols-3 items-center px-4 py-2 md:px-8">
+    <!-- Bagian Kiri: Hamburger Menu dan Search Icon Desktop -->
+    <div class="flex justify-start items-center space-x-4">
+      <button id="menuToggle" class="z-50">
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list lg:hidden" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
+        <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 hidden">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+<!-- search desktop -->
+      <button id="searchIconDesktop" class="hidden md:block" onclick="openSearchBar()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+      </button>
+    </div>
+<!-- Popup Modal search-->
+<div id="searchDesktop" class="fixed inset-0 bg-white backdrop-blur-sm bg-opacity-50 hidden flex justify-center items-center z-10">
+</div>
+
+<!-- Bagian Tengah: Logo -->
+<div class="flex justify-center text-center">
+    <img src="bre.png" alt="Logo" class="h-10 w-auto">
+</div>
+
+    <!-- Bagian Kanan: Search Icon Mobile -->
+    <div class="flex justify-end">
+      <button id="searchIconMobile" class="md:hidden" onclick="openSearchMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Menu Overlay -->
+<div id="menuOverlay" class="fixed top-0 left-0 w-full h-full bg-white z-40 transform -translate-x-full transition-transform duration-300">
+  <!-- Search Bar -->
+  <div class="p-4 pt-20 border-b">
+    <div class="flex border border-black rounded-sm overflow-hidden hover:shadow-[4px_4px_0px_#000000]">
+      <input 
+        id="searchInput"
+        type="text" 
+        placeholder="Search for News..." 
+        class="flex-grow p-2 focus:outline-none"
+      />
+      <button class="bg-black text-white flex items-center justify-center px-3">
+        <!-- Search Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menu List -->
+  <ul class="p-4 max-h-[calc(100vh-135px)] overflow-y-auto">
+    <li class="py-2 border-b">Home</li>
+    <li class="py-2 border-b">News</li>
+    <li class="py-2 border-b">Sports</li>
+    <li class="py-2 border-b">Business</li>
+    <li class="py-2 border-b">Innovation</li>
+    <li class="py-2 border-b">Culture</li>
+    <li class="py-2 border-b">Arts</li>
+    <li class="py-2 border-b">Travel</li>
+    <li class="py-2 border-b">Earth</li>
+    <li class="py-2 border-b">Videos</li>
+    <li class="py-2 border-b">Life</li>
+    <li class="py-2 border-b">Voices</li>
+    <li class="py-2 border-b">Technology</li>
+    <li class="py-2 border-b">Health</li>
+    <li class="py-2 border-b">Education</li>
+    <!-- Add more items as needed -->
+  </ul>
+</div>
+
+<script>
+// Hamburger Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const menuIcon = document.getElementById('menuIcon');
+const closeIcon = document.getElementById('closeIcon');
+const menuOverlay = document.getElementById('menuOverlay');
+
+// Search Icon Click
+const searchButton = document.querySelector('button[onclick="openSearchMenu()"]');
+const searchInput = document.getElementById('searchInput');
+const searchIconMobile = document.getElementById('searchIconMobile');
+
+// Toggle Menu Overlay and Icons
+menuToggle.addEventListener('click', () => {
+  if (menuOverlay.classList.contains('-translate-x-full')) {
+    menuOverlay.classList.remove('-translate-x-full');
+    menuOverlay.classList.add('translate-x-0');
+    menuIcon.classList.add('hidden');
+    closeIcon.classList.remove('hidden');
+    searchIconMobile.classList.add('hidden');  // Hide search icon when overlay is open
+  } else {
+    menuOverlay.classList.remove('translate-x-0');
+    menuOverlay.classList.add('-translate-x-full');
+    menuIcon.classList.remove('hidden');
+    closeIcon.classList.add('hidden');
+    searchIconMobile.classList.remove('hidden'); // Show search icon when overlay is closed
+  }
+});
+
+// Open Search Menu
+function openSearchMenu() {
+  menuOverlay.classList.remove('-translate-x-full');
+  menuOverlay.classList.add('translate-x-0');
+  menuIcon.classList.add('hidden');
+  closeIcon.classList.remove('hidden');
+  searchIconMobile.classList.add('hidden'); // Hide search icon when search menu is open
+  
+  // Focus on search input and show keyboard
+  setTimeout(() => {
+    searchInput.focus();
+  }, 300);
+}
+</script>
+
+<!-- Slider Topics on Desktop -->
+<div id="sliderTopics" class="mt-0 border-black border-b bg-white hidden md:block fixed top-[58px] left-0 w-full z-40">
+  <div class="overflow-x-auto">
+    <div class="flex space-x-4 text-sm px-4 py-2 md:justify-center">
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Home</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">News</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Sport</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Business</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Innovation</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Culture</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Earth</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Video</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Live</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Audio</a>
+      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Weather</a>
+    </div>
+  </div>
+</div>
