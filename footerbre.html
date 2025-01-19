@@ -153,3 +153,72 @@
     </p>
   </div>
 </footer>
+
+<!-- Script -->
+<script>
+//script Language
+document.addEventListener('DOMContentLoaded', () => {
+  const languageButton = document.getElementById('languageButton');
+  const languageModal = document.getElementById('languageModal');
+  const closeLanguageModal = document.getElementById('closeLanguageModal'); // Ganti id jadi unique
+
+  // Show modal on button click
+  languageButton.addEventListener('click', () => {
+    languageModal.classList.remove('hidden');
+  });
+
+  // Close modal on button click
+  closeLanguageModal.addEventListener('click', () => {
+    languageModal.classList.add('hidden');
+  });
+
+  // Close modal if clicked outside modal content
+  languageModal.addEventListener('click', (event) => {
+    if (event.target === languageModal) {
+      languageModal.classList.add('hidden');
+    }
+  });
+});
+
+// script Subscribe
+document.addEventListener('DOMContentLoaded', () => {
+  const subscribeButton = document.getElementById('subscribeButton');
+  const subscribeModal = document.getElementById('subscribeModal');
+  const closeSubscribeModal = document.getElementById('closeSubscribeModal'); // Ganti id jadi unique
+
+  // Show modal on button click
+  subscribeButton.addEventListener('click', () => {
+    subscribeModal.classList.remove('hidden');
+  });
+
+  // Close modal on button click
+  closeSubscribeModal.addEventListener('click', () => {
+    subscribeModal.classList.add('hidden');
+  });
+
+  // Close modal if clicked outside modal content
+  subscribeModal.addEventListener('click', (event) => {
+    if (event.target === subscribeModal) {
+      subscribeModal.classList.add('hidden');
+    }
+  });
+});
+</script>
+
+<!-- JavaScript untuk memanipulasi nama author -->
+<script type="text/javascript">
+  // Ambil isi postingan
+  var postContent = document.querySelector('.b-postbody').innerHTML;
+
+  // Cari bagian dengan #AuthorName
+  var authorMatch = postContent.match(/#AuthorName:\s*(.*)/);
+
+  if (authorMatch) {
+    // Jika ditemukan, ambil nama penulis dan tampilkan di bagian author
+    var authorName = authorMatch[1]; // Nama setelah #AuthorName: 
+    document.getElementById('authorName').textContent = authorName;
+    
+    // Menghapus #AuthorName agar tidak tampil di dalam postingan
+    document.querySelector('.b-postbody').innerHTML = postContent.replace(/#AuthorName:\s*.*\s*/g, '');
+  }
+</script>
