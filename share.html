@@ -44,7 +44,6 @@
   </b:else/>
 
 
-  <!-- schema markup -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,7 +51,7 @@
   "headline": "<data:post.title/>",
   "author": {
     "@type": "Person",
-    "name": "<b:if cond='data:post.body.contains("#AuthorName")'><data:post.author/><b:else/>Anonymous<b:if/>"
+    "name": "<b:if cond='data:post.body.contains(\"#AuthorName\")'><data:post.author/></b:if><b:else/>Anonymous</b:else>"
   },
   "datePublished": "<data:post.date/>",
   "dateModified": "<data:post.modified/>",
@@ -68,6 +67,8 @@
   "description": "<data:post.snippet/>"
 }
 </script>
+
+
   <!-- Include Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.2.7/dist/tailwind.min.css" rel="stylesheet">
