@@ -1,5 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <b:if cond='data:blog.pageType == "index"'>
+    <!-- Jika di homepage, hanya nama blog -->
+    <title><data:blog.title/></title>
+  </b:if>
+
+  <b:if cond='data:post.labels contains "Opinion"'>
+    <!-- Jika postingan memiliki label Opinion -->
+    <title>Opinion | <data:post.title/></title>
+  </b:if>
+
+  <b:if cond='data:post.labels contains "Entertainment"'>
+    <!-- Jika postingan memiliki label Entertainment -->
+    <title>Entertainment | <data:post.title/></title>
+  </b:if>
+
+  <b:if cond='data:post.labels contains "Growth"'>
+    <!-- Jika postingan memiliki label Growth -->
+    <title>Growth | <data:post.title/></title>
+  </b:if>
+
+  <b:if cond='data:post.labels contains "Wellness"'>
+    <!-- Jika postingan memiliki label Wellness -->
+    <title>Wellness | <data:post.title/></title>
+  </b:if>
+
+  <b:if cond='data:post.labels contains "Arena+"'>
+    <!-- Jika postingan memiliki label Arena+ -->
+    <title>Arena+ | <data:post.title/></title>
+  </b:if>
+
+  <b:if cond='data:blog.pageType == "static_page"'>
+    <!-- Jika itu adalah halaman statis (contoh: Tentang Kami, Kontak, dll.) -->
+    <title><data:page.title/></title>
+  </b:if>
+
+  <b:else/>
+    <!-- Jika bukan homepage dan bukan salah satu label utama, tampilkan hanya judul postingan -->
+    <title><data:post.title/></title>
+  </b:else/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.2.7/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="icon" href="favicon.jpg" type="image/x-icon" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Questrial&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<b:skin version='1.3.0'><![CDATA[/* CSS */
+<style>
+.plus-jakarta-sans-main {
+  font-family: "Plus Jakarta Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.merriweather-regular {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-slab-medium {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+
+
+
+.zilla-slab-light {
+  font-family: "Zilla Slab", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.zilla-slab-regular {
+  font-family: "Zilla Slab", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.zilla-slab-medium {
+  font-family: "Zilla Slab", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.zilla-slab-semibold {
+  font-family: "Zilla Slab", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.zilla-slab-bold {
+  font-family: "Zilla Slab", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.zilla-slab-light-italic {
+  font-family: "Zilla Slab", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.zilla-slab-regular-italic {
+  font-family: "Zilla Slab", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.zilla-slab-medium-italic {
+  font-family: "Zilla Slab", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.zilla-slab-semibold-italic {
+  font-family: "Zilla Slab", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.zilla-slab-bold-italic {
+  font-family: "Zilla Slab", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+
+</style>
+</b:skin>
+</head>
+<body class="plus-jakarta-sans-main bg-white text-neutral-900">
+
 <!-- Header -->
-<header class="fixed border-b border-neutral-200 top-0 left-0 w-full bg-white z-50">
+<header class="fixed bg-white top-0 left-0 w-full  z-50">
   <div class="grid grid-cols-3 items-center px-4 py-2 md:px-8">
     <!-- Bagian Kiri: Hamburger Menu dan Search Icon Desktop -->
     <div class="flex justify-start items-center space-x-4">
@@ -25,7 +169,7 @@
 
 <!-- Bagian Tengah: Logo -->
 <div class="flex justify-center text-center">
-    <img src="bre.png" alt="Logo" class="h-10 w-auto">
+    <img src="bre.png" alt="Logo" class="h-9 w-auto">
 </div>
 
     <!-- Bagian Kanan: Search Icon Mobile -->
@@ -41,43 +185,87 @@
 
 <!-- Menu Overlay -->
 <div id="menuOverlay" class="fixed top-0 left-0 w-full h-full bg-white z-40 transform -translate-x-full transition-transform duration-300">
-  <!-- Search Bar -->
-  <div class="p-4 pt-20 border-b">
-    <div class="flex border border-black rounded-sm overflow-hidden hover:shadow-[4px_4px_0px_#000000]">
-      <input 
-        id="searchInput"
-        type="text" 
-        placeholder="Search for News..." 
-        class="flex-grow p-2 focus:outline-none"
-      />
-      <button class="bg-black text-white flex items-center justify-center px-3">
-        <!-- Search Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-        </svg>
-      </button>
-    </div>
+<!-- Search Bar -->
+<div class="p-4 pt-20">
+    <form action="/search" method="get" class="flex border border-black rounded-sm overflow-hidden hover:shadow-[4px_4px_0px_#000000]">
+        <input 
+            id="searchInput"
+            type="text" 
+            name="q"
+            placeholder="Search..." 
+            class="flex-grow p-2 focus:outline-none"
+        />
+        <button type="submit" class="bg-black text-white flex items-center justify-center px-3">
+            <!-- Search Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+        </button>
+    </form>
+</div>
+
+  <!-- Content Scrollable -->
+  <div class="h-[calc(100%-150px)] overflow-y-scroll"> <!-- Tinggi sesuai, scrollable -->
+<!-- Menu Channel -->
+<div class="md:hidden grid grid-cols-3 gap-2 p-4">
+  <!-- Baris pertama: 3 gambar -->
+  <div class="border-[1px] border-black">
+    <a href="https://example.com/link1">
+      <img src="image/brechannelyt.png" alt="Gambar 1" class="w-full h-auto" />
+    </a>
+  </div>
+  <div class="border-[1px] border-black">
+    <a href="https://example.com/link2">
+      <img src="image/breonair.png" alt="Gambar 2" class="w-full h-auto" />
+    </a>
+  </div>
+  <div class="border-[1px] border-black">
+    <a href="https://example.com/link3">
+      <img src="https://via.placeholder.com/100" alt="Gambar 3" class="w-full h-auto" />
+    </a>
   </div>
 
-  <!-- Menu List -->
-  <ul class="p-4 max-h-[calc(100vh-135px)] overflow-y-auto">
-    <li class="py-2 border-b">Home</li>
-    <li class="py-2 border-b">News</li>
-    <li class="py-2 border-b">Sports</li>
-    <li class="py-2 border-b">Business</li>
-    <li class="py-2 border-b">Innovation</li>
-    <li class="py-2 border-b">Culture</li>
-    <li class="py-2 border-b">Arts</li>
-    <li class="py-2 border-b">Travel</li>
-    <li class="py-2 border-b">Earth</li>
-    <li class="py-2 border-b">Videos</li>
-    <li class="py-2 border-b">Life</li>
-    <li class="py-2 border-b">Voices</li>
-    <li class="py-2 border-b">Technology</li>
-    <li class="py-2 border-b">Health</li>
-    <li class="py-2 border-b">Education</li>
-    <!-- Add more items as needed -->
-  </ul>
+  <!-- Baris kedua: 3 gambar -->
+  <div class="border-[1px] border-black">
+    <a href="https://example.com/link4">
+      <img src="https://via.placeholder.com/100" alt="Gambar 4" class="w-full h-auto" />
+    </a>
+  </div>
+  <div class="border-[1px] border-black">
+    <a href="https://example.com/link5">
+      <img src="https://via.placeholder.com/100" alt="Gambar 5" class="w-full h-auto" />
+    </a>
+  </div>
+  <div class="border-[1px] border-black">
+    <a href="https://example.com/link6">
+      <img src="https://via.placeholder.com/100" alt="Gambar 6" class="w-full h-auto" />
+    </a>
+  </div>
+</div>
+
+<!-- menu list-->
+<b:widget id='MenuList' type='HTML' locked='false' title='Menu List'>
+    <b:includable id='main'>
+        <ul class="p-4 pt-0 bg-white">
+            <li class="py-2 border-b"><a href="/">Home</a></li>
+            <li class="py-2 border-b"><a href="/search/label/News">News</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Sports">Sports</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Business">Business</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Innovation">Innovation</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Culture">Culture</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Arts">Arts</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Travel">Travel</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Earth">Earth</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Videos">Videos</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Life">Life</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Voices">Voices</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Technology">Technology</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Health">Health</a></li>
+            <li class="py-2 border-b"><a href="/search/label/Education">Education</a></li>
+        </ul>
+    </b:includable>
+</b:widget>
+  </div>
 </div>
 
 <script>
@@ -125,20 +313,523 @@ function openSearchMenu() {
 </script>
 
 <!-- Slider Topics on Desktop -->
-<div id="sliderTopics" class="mt-0 border-black border-b bg-white hidden md:block fixed top-[58px] left-0 w-full z-40">
-  <div class="overflow-x-auto">
-    <div class="flex space-x-4 text-sm px-4 py-2 md:justify-center">
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Home</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">News</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Sport</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Business</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Innovation</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Culture</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Earth</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Video</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Live</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Audio</a>
-      <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Weather</a>
+<b:widget id='SliderTopics' type='HTML' locked='false' title='Slider Topics'>
+    <b:includable id='main'>
+        <style>
+            #sliderTopics {
+                position: fixed;
+                top: 58px;
+                left: 0;
+                width: 100%;
+                z-index: 40;
+                background-color: white;
+                border-bottom: 1px solid black;
+            }
+
+            #sliderTopics .flex {
+                display: flex;
+                gap: 1rem;
+                padding: 0.5rem 1rem;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            #sliderTopics a {
+                color: #4b5563; /* text-gray-700 */
+                font-weight: 600;
+                text-decoration: none;
+            }
+
+            #sliderTopics a:hover {
+                color: #3b82f6; /* hover:text-blue-500 */
+            }
+
+            @media (max-width: 768px) {
+                #sliderTopics {
+                    display: none;
+                }
+            }
+        </style>
+
+        <!-- Slider Topics on Desktop -->
+        <div id="sliderTopics">
+            <div class="flex space-x-4 text-sm px-4 py-2 md:justify-center">
+                <a href="/">Home</a>
+                <a href="/search/label/News">News</a>
+                <a href="/search/label/Sport">Sport</a>
+                <a href="/search/label/Business">Business</a>
+                <a href="/search/label/Innovation">Innovation</a>
+                <a href="/search/label/Culture">Culture</a>
+                <a href="/search/label/Earth">Earth</a>
+                <a href="/search/label/Video">Video</a>
+                <a href="/search/label/Live">Live</a>
+                <a href="/search/label/Audio">Audio</a>
+                <a href="/search/label/Weather">Weather</a>
+            </div>
+        </div>
+    </b:includable>
+</b:widget>
+
+<!-- Popup Modal Share-->
+<div id="shareModal" class="fixed inset-0 bg-white backdrop-blur-sm bg-opacity-50 hidden flex justify-center items-center z-10">
+  <div class="bg-white border-black border-[1px] rounded-sm shadow-[4px_4px_0px_#000000] p-6 w-80 relative">
+    <h2 class="text-lg text-black font-semibold mb-4">Share</h2>
+    <!-- Grid Share Buttons -->
+    <div class="grid text-xs grid-cols-3 gap-8 mb-8">
+      <div class="flex flex-col items-center cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="" class="bi bi-twitter-x" viewBox="0 0 16 16">
+  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+</svg><a class="pt-2">X/Twitter</a></div>
+      <div class="flex flex-col items-center cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="" class="bi bi-instagram" viewBox="0 0 16 16">
+  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+</svg><a class="pt-2">Instagram</a></div>
+      <div class="flex flex-col items-center cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="" class="bi bi-whatsapp" viewBox="0 0 16 16">
+  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+</svg><a class="pt-2">WhatsApp</a></div>
+      <div class="flex flex-col items-center cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="" class="bi bi-facebook" viewBox="0 0 16 16">
+  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+</svg><a class="pt-2">Facebook</a></div>
+      <div class="flex flex-col items-center cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="" class="bi bi-messenger" viewBox="0 0 16 16">
+  <path d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.64.64 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.64.64 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76m5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"/>
+</svg><a class="pt-2">Messenger</a></div>
+      <div class="flex flex-col items-center cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="" class="bi bi-telegram" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+</svg><a class="pt-2">Telegram</a></div>
     </div>
+    <!-- Link and Copy Button Combined -->
+    <div class="flex items-center border border-black rounded-sm overflow-hidden">
+      <input type="text" id="shareLink" class="flex-1 px-2 py-1 text-sm" value="https://example.com" readonly>
+      <button id="copyLink" class="bg-black text-white px-4 py-1 text-sm hover:bg-opacity-80">Copy</button>
+    </div>
+    <!-- Close Button Popup Modal share -->
+    <span id="closeShareModal" class="absolute top-2 right-4 text-xl cursor-pointer text-black hover:text-black">&times;</span>
   </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Tombol untuk membuka modal
+  const shareButton = document.querySelector('#shareButton');
+  // Modal Share
+  const shareModal = document.querySelector('#shareModal');
+  // Tombol untuk menutup modal
+  const closeShareModal = document.querySelector('#closeShareModal');
+
+  // Event listener untuk membuka modal
+  shareButton.addEventListener('click', () => {
+    shareModal.classList.remove('hidden');
+    shareModal.classList.add('flex');
+  });
+
+  // Event listener untuk menutup modal
+  closeShareModal.addEventListener('click', () => {
+    shareModal.classList.add('hidden');
+    shareModal.classList.remove('flex');
+  });
+
+  // Tambahan: klik di luar modal untuk menutup
+  window.addEventListener('click', (event) => {
+    if (event.target === shareModal) {
+      shareModal.classList.add('hidden');
+      shareModal.classList.remove('flex');
+    }
+  });
+
+  // Tombol Copy Link
+  const copyLinkButton = document.querySelector('#copyLink');
+  const shareLinkInput = document.querySelector('#shareLink');
+
+  copyLinkButton.addEventListener('click', () => {
+    navigator.clipboard.writeText(shareLinkInput.value).then(() => {
+      alert('Link copied to clipboard!');
+    }).catch((err) => {
+      console.error('Failed to copy link:', err);
+    });
+  });
+});
+</script>   
+<!-- end Popup menu share -->
+
+<!-- Blog Content Template Opinion -->
+<b:if cond='data:post.labels contains "Opinion"'><!-- untuk template Opinion -->
+<main class="plus-jakarta-sans-main max-w-screen-md mx-auto pt-28 pb-8">
+   
+  <!-- Title -->
+<b:includable id='post'>
+    <style>
+        /* Styling untuk Postingan Blogger */
+        .post-label {
+            font-size: 1.125rem; /* text-lg */
+            color: #b91c1c; /* text-red-700 */
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .post-author {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #171717; /* text-neutral-900 */
+            text-align: center;
+        }
+
+        .post-date {
+            font-size: 0.75rem; /* text-xs */
+            text-align: center;
+            color: #171717; /* text-neutral-900 */
+            margin-bottom: 2.5rem;
+        }
+
+        .post-divider {
+            border-top: 2px solid #e5e5e5;
+            width: 5rem;
+            margin: 1rem auto;
+        }
+
+        .post-title {
+            font-size: 1.75rem; /* text-2xl */
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+    </style>
+
+    <!-- Konten Postingan -->
+    <article class="blog-post">
+        <!-- Label Post -->
+        <h3 class="post-label uppercase ">
+            <b:if cond='data:post.labels'>
+                <data:post.labels/>
+            <b:else/>
+                Opinion
+            </b:if>
+        </h3>
+        
+<!-- Author Name Section (di luar body) -->
+<b:if cond="data:post.body.contains('#AuthorName')">
+  <div id="authorNameSection" class="text-center uppercase mt-4">
+    <p class="text-sm text-neutral-900"><span id="authorName"></span></p>
+  </div>
+</b:if>
+     
+        <!-- Garis Pembatas -->
+        <hr class="post-divider">
+        
+        <!-- Judul Post -->
+        <h1 class="post-title">
+            <data:post.title/>
+        </h1>
+        
+        <!-- Tanggal Post -->
+        <p class="post-date"><data:post.timestamp/></p>
+    </article>
+</b:includable>
+
+  <!-- Image -->
+<b:includable id='postThumbnail'>
+    <div class="relative w-full">
+        <a expr:href='data:post.url'>
+            <img expr:src='data:post.thumbnailUrl' alt='Thumbnail' class='w-full'>
+        </a>
+    </div>
+</b:includable>
+
+  <!-- Icons -->
+  <div class="flex justify-between items-center mb-6 px-4">
+   <!-- Icon -->
+    <div class="flex space-x-4 text-gray-600">
+      <!-- Share Icon -->
+      <button id="shareButton" class="hover:text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
+          <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708z"/>
+        </svg>
+      </button>
+
+      <!-- Save Icon -->
+      <button class="hover:text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+          <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+<b:else/><!-- Layout Default untuk Postingan Tanpa Label 'Opinion' -->
+
+<!-- Isi Tulisan Postingan -->
+<div class="px-4 pt-8">
+  <div class="b-postbody">
+    <p class="text-md leading-relaxed mb-4">
+      <!-- Konten postingan akan otomatis muncul di sini -->
+      <b:eval expr='data:post.body'/>
+    </p>
+  </div>
+</div>
+</main>
+</b:if>
+
+
+<!-- related post -->
+<div class="related-posts">
+  <h3 class="text-lg font-semibold mb-4">Related Posts</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <b:section id="related-posts" class="related-posts-list" maxwidgets="1" name="Related Posts" showaddelement="no">
+      <b:widget id="Label1" locked="false" title="Related Posts" type="Label" visible="true">
+        <b:widget-settings>
+          <!-- Hapus bagian label di sini -->
+          <b:widget-setting name="max-results">5</b:widget-setting>
+        </b:widget-settings>
+        <div class="widget-content">
+          <b:loop values='data:posts' var='post'>
+            <div class="post-item mb-6">
+              <div class="post-content">
+                <h4 class="post-title text-xl font-semibold mb-2">
+                  <a href="<data:post.url>" class="text-blue-600"><data:post.title/></a>
+                </h4>
+                <p class="post-preview text-gray-600 text-base line-clamp-3 mb-2">
+                  <data:post.snippet/>
+                </p>
+                <span class="post-date text-gray-500 text-sm">
+                  <data:post.dateFormatted/>
+                </span>
+              </div>
+            </div>
+          </b:loop>
+        </div>
+      </b:widget>
+    </b:section>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-black mt-10 md:px-20 pb-6 text-gray-700 border-white border-t-[1px]">
+  <div class="container mx-auto px-4 py-8 space-y-8">
+    <!-- Logo Footer -->
+    <div class="zilla-slab-semibold flex items-center text-3xl text-white space-x-2">
+<img src="bre.png" alt="Logo" class="h-8 w-auto">
+</div>
+
+    <!-- Navigation Links -->
+    <div class="grid gap-4 text-white font-semibold lg:grid-cols-4">
+      <a href="#" class="hover:underline">Home</a>
+      <a href="#" class="hover:underline">News</a>
+      <a href="#" class="hover:underline">Sport</a>
+      <a href="#" class="hover:underline">Business</a>
+      <a href="#" class="hover:underline">Innovation</a>
+      <a href="#" class="hover:underline">Culture</a>
+      <a href="#" class="hover:underline">Earth</a>
+      <a href="#" class="hover:underline">Video</a>
+      <a href="#" class="hover:underline">Live</a>
+      <a href="#" class="hover:underline">Audio</a>
+      <a href="#" class="hover:underline">Weather</a>
+      <a href="#" class="hover:underline">BRE Shop</a>
+    </div>
+
+<!-- Language and Subscribe Button -->
+<div class="flex flex-col lg:flex-row lg:space-x-4 lg:w-full space-y-4 lg:space-y-0">
+  <!-- Language Button -->
+  <div>
+    <button id="languageButton" class="border text-white border-white rounded-sm p-2 w-full lg:w-auto">
+      BRE in other languages
+    </button>
+  </div>
+
+  <!-- Subscribe Button -->
+  <div>
+    <button id="subscribeButton" class="border text-white border-white rounded-sm p-2 w-full lg:w-auto">
+      Only €1 Subscribe to Newspaper
+    </button>
+  </div>
+</div>
+
+<!-- Popup Modal Language-->
+<div id="languageModal" class="fixed inset-0 bg-white backdrop-blur-sm bg-opacity-50 hidden flex justify-center items-center z-10">
+  <div class="bg-white border-black border-[1px] rounded-sm shadow-[4px_4px_0px_#000000] p-6 w-80 relative">
+    <h2 class="text-lg font-semibold mb-4">Choose Language</h2>
+    <ul class="space-y-2">
+      <li><a href="#" class="block text-gray-700 hover:text-black">العربية (Al-‘Arabiyya)</a></li>
+      <li><a href="#" class="block text-gray-700 hover:text-black">Deutsch</a></li>
+      <li><a href="#" class="block text-gray-700 hover:text-black">English</a></li>
+      <li><a href="#" class="block text-gray-700 hover:text-black">Bahasa Indonesia</a></li>
+      <li><a href="#" class="block text-gray-700 hover:text-black">日本語 (Nihongo)</a></li>
+      <li><a href="#" class="block text-gray-700 hover:text-black">한국어 (Hangul)</a></li>
+      <li><a href="#" class="block text-gray-700 hover:text-black">Nederlands</a></li>
+    </ul>
+    <!-- Close Button Popup Modal Language -->
+    <span id="closeLanguageModal" class="absolute top-2 right-4 text-xl cursor-pointer text-black hover:text-black">&times;</span>
+  </div>
+</div>
+
+<!-- Popup Modal Subscribe-->
+<div id="subscribeModal" class="fixed inset-0 bg-white backdrop-blur-sm bg-opacity-50 hidden flex justify-center items-center z-10">
+  <div class="bg-white border-black border-[1px] rounded-sm shadow-[4px_4px_0px_#000000] p-6 w-80 relative">
+    <h2 class="zilla-slab-semibold text-2xl font-semibold mb-4">Enter your info</h2>
+    
+    <!-- Form -->
+    <form action="#" method="POST" class="space-y-4">
+      <!-- Nama -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+        <input type="text" id="name" name="name" required class="mt-1 block w-full p-2 border-dashed border-[1px] border-black rounded-sm focus:outline-none focus:ring-[1px] focus:ring-black">
+      </div>
+
+      <!-- Alamat Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input type="email" id="email" name="email" required class="mt-1 block w-full p-2 border-dashed border-[1px] border-black rounded-sm focus:outline-none focus:ring-[1px] focus:ring-black">
+        
+        <!-- SVG dan Terms -->
+        <div class="flex items-center mt-2 text-xs text-black">
+          <a href="#" class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+            </svg>
+            <span>Read the terms and privacy policy</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tombol Kirim -->
+      <div class="flex justify-end">
+        <button type="submit" class="zilla-slab-semibold font-semibold bg-black hover:shadow-[4px_4px_0px_#000000] text-white text-lg hover:text-black border-black border-[1px] py-2 px-4 rounded-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-black">
+          Send
+        </button>
+      </div>
+    </form>
+
+    <!-- Close Button Popup Modal Subscribe -->
+    <span id="closeSubscribeModal" class="absolute top-2 right-4 text-xl cursor-pointer text-black hover:text-black">&times;</span>
+  </div>
+</div>
+
+    <!-- Social Media Links -->
+    <div class="flex space-x-4">
+      <a href="#" class="text-white hover:text-neutral-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+</svg><!-- Icon SVG --></svg>
+      </a>
+      <a href="#" class="text-white hover:text-neutral-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+</svg><!-- Icon SVG --></svg>
+      </a>
+      <a href="#" class="text-white hover:text-neutral-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-threads" viewBox="0 0 16 16">
+  <path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/>
+</svg><!-- Icon SVG --></svg>
+      </a>
+      <a href="#" class="text-white hover:text-neutral-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+</svg><!-- Icon SVG --></svg>
+      </a>
+      <a href="#" class="text-white hover:text-neutral-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+</svg><!-- Icon SVG --></svg>
+      </a>
+      <a href="#" class="text-white hover:text-neutral-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-spotify" viewBox="0 0 16 16">
+  <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.669 11.538a.5.5 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686m.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858m.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288"/>
+</svg><!-- Icon SVG --></svg>
+      </a>
+    </div>
+
+<!-- Footer Links -->
+<div class="flex flex-wrap gap-4 text-white text-xs md:text-sm justify-start">
+  <a href="#" class="hover:underline">Terms of Use</a>
+  <a href="#" class="hover:underline">About BRE</a>
+  <a href="#" class="hover:underline">Privacy Policy</a>
+  <a href="#" class="hover:underline">Cookies</a>
+  <a href="#" class="hover:underline">Accessibility Help</a>
+  <a href="#" class="hover:underline">Contact BRE</a>
+  <a href="#" class="hover:underline">Advertise with us</a>
+  <a href="#" class="hover:underline">Do not share or sell my info</a>
+  <a href="#" class="hover:underline">Contact technical support</a>
+</div>
+
+    <!-- Copyright -->
+    <p class="text-xs text-white">
+      © 2024 BRE Digitale Media BV All rights reserved. BRE® is not responsible for the content of external sites.
+    </p>
+  </div>
+</footer>
+
+<!-- Script -->
+<script>
+//script Language
+document.addEventListener('DOMContentLoaded', () => {
+  const languageButton = document.getElementById('languageButton');
+  const languageModal = document.getElementById('languageModal');
+  const closeLanguageModal = document.getElementById('closeLanguageModal'); // Ganti id jadi unique
+
+  // Show modal on button click
+  languageButton.addEventListener('click', () => {
+    languageModal.classList.remove('hidden');
+  });
+
+  // Close modal on button click
+  closeLanguageModal.addEventListener('click', () => {
+    languageModal.classList.add('hidden');
+  });
+
+  // Close modal if clicked outside modal content
+  languageModal.addEventListener('click', (event) => {
+    if (event.target === languageModal) {
+      languageModal.classList.add('hidden');
+    }
+  });
+});
+
+// script Subscribe
+document.addEventListener('DOMContentLoaded', () => {
+  const subscribeButton = document.getElementById('subscribeButton');
+  const subscribeModal = document.getElementById('subscribeModal');
+  const closeSubscribeModal = document.getElementById('closeSubscribeModal'); // Ganti id jadi unique
+
+  // Show modal on button click
+  subscribeButton.addEventListener('click', () => {
+    subscribeModal.classList.remove('hidden');
+  });
+
+  // Close modal on button click
+  closeSubscribeModal.addEventListener('click', () => {
+    subscribeModal.classList.add('hidden');
+  });
+
+  // Close modal if clicked outside modal content
+  subscribeModal.addEventListener('click', (event) => {
+    if (event.target === subscribeModal) {
+      subscribeModal.classList.add('hidden');
+    }
+  });
+});
+</script>
+
+<!-- JavaScript untuk memanipulasi nama author -->
+<script type="text/javascript">
+  // Ambil isi postingan
+  var postContent = document.querySelector('.b-postbody').innerHTML;
+
+  // Cari bagian dengan #AuthorName
+  var authorMatch = postContent.match(/#AuthorName:\s*(.*)/);
+
+  if (authorMatch) {
+    // Jika ditemukan, ambil nama penulis dan tampilkan di bagian author
+    var authorName = authorMatch[1]; // Nama setelah #AuthorName: 
+    document.getElementById('authorName').textContent = authorName;
+    
+    // Menghapus #AuthorName agar tidak tampil di dalam postingan
+    document.querySelector('.b-postbody').innerHTML = postContent.replace(/#AuthorName:\s*.*\s*/g, '');
+  }
+</script>
+</body>
+</html>
